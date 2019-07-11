@@ -1,7 +1,7 @@
 import { h, app } from 'https://unpkg.com/hyperapp@beta'
 import Timestamp from '../lib/fx/timestamp.js'
 import AnimationFrame from '../lib/sub/animationframe.js'
-import targetValue from '../lib/payload/targetValue.js'
+import targetValue from '../lib/payload/targetvalue.js'
 
 const GAUGE_WIDTH = 300
 const DEFAULT_DURATION = 5
