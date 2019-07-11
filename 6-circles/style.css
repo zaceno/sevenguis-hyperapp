@@ -1,0 +1,52 @@
+#app-circles svg {
+    border: 1px black solid;
+    background-color: #fff;
+}
+
+#app-circles circle {
+    stroke: #000000;
+    fill: rgba(0,0,0,0);
+    stroke-width: 1;
+}
+
+#app-circles circle.selected {
+    fill: rgba(0, 153, 255, 0.2)
+}
+
+#app-circles .dialog-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+#app-circles .dialog-front {
+    position: absolute;
+    overflow: hidden;
+    background-color: #ffa;
+    border: 1px #ccc solid;
+    z-index: 1001;
+    
+}
+
+#app-circles .dialog-bar {
+    cursor: pointer;
+    height: 10px;
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 10%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 90%, rgba(0,0,0,0) 100%);
+}
+
+#app-circles .popup-container {
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+    background-color: #00aaff;
+    border-radius: 3px;
+    box-shadow: #777 0px 0px 2px;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+
+}

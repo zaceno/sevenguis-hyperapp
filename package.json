@@ -1,0 +1,25 @@
+{
+  "name": "sevenguis-hyperapp",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "Cells-task from 7GUIs",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx serve",
+    "test": "ava"
+  },
+  "author": "Zacharias Enochsson",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^2.1.0",
+    "esm": "^3.2.25"
+  },
+  "ava": {
+    "babel": false,
+    "require": [
+      "esm"
+    ],
+    "compileEnhancements": false
+  },
+  "dependencies": {}
+}
