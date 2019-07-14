@@ -17,6 +17,16 @@ test('init creates empty table', t => {
     t.is(get(table, 'Z99'), '')
 })
 
+test('init can be started with some data', t => {
+    const table = init({
+        A1: 'foo',
+        M20: 'bar',
+    })
+    t.is(get(table, 'A1'), 'foo')
+    t.is(get(table, 'A2'), '')
+    t.is(get(table, 'M20'), 'bar')
+})
+
 test('bad reference returns null', t => {
     const table = init()
     t.is(get(table, ''), null, 'empty string')

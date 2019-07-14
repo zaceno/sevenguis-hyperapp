@@ -1,65 +1,65 @@
-import parser from './parser.js'
-import { get } from './table.js'
-import { range } from './refs.js'
+import formulaTree from './parser.js'
+export const ERROR_VALUE = Symbol()
+export const EMPTY_VALUE = Symbol()
 
-const ERROR = Symbol()
-
-export default function(table, formula) {
-    try {
-        return formulaValue(table, [], formula)
-    } catch (e) {
-        if (e === ERROR) return '#ERROR#'
-        throw e
+//returns an array of unique strings referencing variables
+//upon which the formula depends
+export function getFormulaDependencies(str) {
+    function collectDeps(node, deps) {
+        if (node.children) {
+            node.children.forEach(ch => collectDeps(ch, deps))
+        } else if (isNaN(node)) {
+            deps[node] = true
+        }
+        return deps
     }
+    const tree = formulaTree(str)
+    if (!tree) return []
+    const depsObj = collectDeps(tree, {})
+    return Object.keys(depsObj)
 }
 
-function cellValue(table, stack, name) {
-    let value = get(table, name)
-    if (value === null) throw ERROR
-    if (value === '') return null
-    if (!isNaN(value)) return +value
-    if (value[0] === '=')
-        return formulaValue(table, stackAdd(stack, name), value.slice(1))
-    throw ERROR
-}
-
-function stackAdd(stack, name) {
-    name = name.toUpperCase()
-    if (stack.indexOf(name) > -1) throw ERROR
-    return [...stack, name]
-}
-
-function formulaValue(table, stack, str) {
-    let node = parser(str)
-    if (!node) throw ERROR
-    let value = nodeValue(table, stack, node)
-    if (!isNaN(value)) return +value
-    throw ERROR
-}
-
-function nodeValue(table, stack, node) {
-    if (node.children) return fnValue(table, stack, node.name, node.children)
-    if (!isNaN(node)) return +node
-    let ends = node.split(':')
-    if (ends.length > 2) throw ERROR
-    if (ends.length === 2) {
-        let list = range(...ends)
-        if (!list) throw ERROR
-        return list.map(n => cellValue(table, stack, n))
+//given an object with the names & values of variables
+//upon which the formula depends, calculates the value of the formula
+//variables with arrays as values are flattened in the argument lists
+export function calculateFormula(str, deps) {
+    function evaluate(node) {
+        if (node.children) {
+            //args, evaluate children. Flatten array,
+            //and filter out empty values.
+            const args = []
+                .concat(...node.children.map(evaluate))
+                .filter(x => x !== EMPTY_VALUE)
+            if (args.filter(a => a === ERROR_VALUE).length) {
+                return ERROR_VALUE
+            }
+            if (node.name.toUpperCase() === 'SUM') {
+                return args.reduce((tot, x) => tot + x, 0)
+            }
+            if (node.name.toUpperCase() === 'PROD') {
+                return args.reduce((tot, x) => tot * x, 1)
+            }
+            if (node.name.toUpperCase() === 'SUB') {
+                if (args.length < 2 || args.length > 2) return ERROR_VALUE
+                return args[0] - args[1]
+            }
+            if (node.name.toUpperCase() === 'DIV') {
+                if (args.length < 2 || args.length > 2) return ERROR_VALUE
+                if (args[1] === 0) return ERROR_VALUE
+                return args[0] / args[1]
+            }
+            return ERROR_VALUE
+        }
+        if (!isNaN(node)) return +node
+        if (node in deps) {
+            if (typeof deps[node] === 'string') return ERROR_VALUE
+            return deps[node]
+        }
+        return ERROR_VALUE
     }
-    return cellValue(table, stack, node)
-}
-
-function fnValue(table, stack, name, args) {
-    name = name.toUpperCase()
-    args = args
-        .map(arg => nodeValue(table, stack, arg))
-        .reduce((a, x) => a.concat(x), [])
-        .filter(x => x !== null)
-    if (name === 'SUM') return args.reduce((t, x) => x + t, 0)
-    if (name === 'PROD') return args.reduce((t, x) => x * t, 1)
-    if (args.length !== 2) throw ERROR
-    if (name === 'SUB') return args[0] - args[1]
-    if (name === 'DIV' && args[1] !== 0) return args[0] / args[1]
-    throw ERROR
+    const tree = formulaTree(str)
+    if (!tree) return ERROR_VALUE
+    const val = evaluate(tree)
+    if (Array.isArray(val)) return ERROR_VALUE
+    return val
 }

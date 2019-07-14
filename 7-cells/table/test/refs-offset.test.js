@@ -1,6 +1,5 @@
 import test from 'ava'
-import {offset} from '../refs'
-
+import { offset } from '../refs.js'
 
 test('offset invalid name', t => t.is(offset('foo', 3, 2), null))
 test('offset row down', t => t.is(offset('M5', 0, 1), 'M6'))

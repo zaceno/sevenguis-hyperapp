@@ -1,5 +1,5 @@
 import test from 'ava'
-import {valid} from '../refs'
+import { valid } from '../refs.js'
 
 test('invalid name', t => t.is(valid('foo'), false))
 test('Out of range', t => t.is(valid('Z100'), false))

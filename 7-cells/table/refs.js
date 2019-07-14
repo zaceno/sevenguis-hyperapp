@@ -8,15 +8,20 @@ export function valid(name) {
 export function offset(name, cols, rows) {
     let c = coords(name)
     if (!c) return null
-    let {row, col} = c
+    let { row, col } = c
     row = Math.max(0, Math.min(99, row + rows))
     col = Math.max(0, Math.min(LETTERS.length - 1, col + cols))
     return LETTERS[col] + row
 }
-export function rows (f) { return [...Array(ROWS).keys()].map(f) }
-export function cols (f) { return LETTERS.split('').map(f) }
-export function cells(row, f) { return cols(col => f(col + row)) }
-
+export function rows(f) {
+    return [...Array(ROWS).keys()].map(f)
+}
+export function cols(f) {
+    return LETTERS.split('').map(f)
+}
+export function cells(row, f) {
+    return cols(col => f(col + row))
+}
 
 function coords(name) {
     name = name.toUpperCase()
@@ -28,16 +33,19 @@ function coords(name) {
     return { row, col }
 }
 
-export function range(a, b) {
-    let pa = coords(a)
-    let pb = coords(b)
+export function range(str) {
+    let ends = str.split(':')
+    if (ends.length < 2) return null
+    if (ends.length > 2) return null
+    let pa = coords(ends[0])
+    let pb = coords(ends[1])
     if (!pa || !pb) return null
-    let {row: aRow, col: aCol} = pa
-    let {row: bRow, col: bCol} = pb
+    let { row: aRow, col: aCol } = pa
+    let { row: bRow, col: bCol } = pb
     let startRow = Math.min(aRow, bRow)
-    let endRow   = Math.max(aRow, bRow)
+    let endRow = Math.max(aRow, bRow)
     let startCol = Math.min(aCol, bCol)
-    let endCol   = Math.max(aCol, bCol)
+    let endCol = Math.max(aCol, bCol)
     let list = []
     for (let i = startCol; i <= endCol; i++) {
         for (let j = startRow; j <= endRow; j++) {

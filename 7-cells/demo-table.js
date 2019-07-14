@@ -1,5 +1,4 @@
-import * as Table from './table/index.js'
-const cells = {
+export default {
     A0: 'ITEM',
     A1: 'Widget',
     A2: 'Flange',
@@ -24,11 +23,4 @@ const cells = {
     D5: '=PROD(0.06, SUM(D1:D4))',
     C6: 'Grand Total:',
     D6: '=SUM(D1:D5)',
-}
-
-export default function() {
-    return Object.keys(cells).reduce(
-        (t, n) => Table.set(t, n, cells[n]),
-        Table.init()
-    )
 }

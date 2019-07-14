@@ -1,4 +1,4 @@
-import parse from '../parser'
+import parse from '../parser.js'
 import test from 'ava'
 
 //ERRORS

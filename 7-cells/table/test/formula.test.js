@@ -1,5 +1,5 @@
 import test from 'ava'
-import { init, set, get, evaluate } from '../index.js'
+import { init, set, evaluate } from '../index.js'
 
 test('evaluate formula, =0.34', t => {
     const formula = '=0.34'
@@ -222,14 +222,12 @@ test('evaluate formula, =DIV(C3:C9)', t => {
     t.is(evaluate(x, 'A1'), '#ERROR#')
 })
 
-//error, range cannot be top expression
 test('evaluate formula, =C4:C11', t => {
     let x = init()
     x = set(x, 'a1', '=C4:C11')
     t.is(evaluate(x, 'a1'), '#ERROR#')
 })
 
-//error for cyclical references in formulas
 test('evaluate formula, nested functions', t => {
     let x = init()
     x = set(x, 'a1', '=DIV(PROD(SUM(C1, D3:F3), 2), SUB(C1, 3))')

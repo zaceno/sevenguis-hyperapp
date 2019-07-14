@@ -67,7 +67,7 @@ const TableView = state =>
 
 app({
     node: document.getElementById('app-cells'),
-    init: { table: demoTable(), editing: null, entry: null },
+    init: { table: Table.init(demoTable), editing: null, entry: null },
     view: state =>
         h('div', {}, [
             h('div', { class: 'scrollcontainer' }, [TableView(state)]),
