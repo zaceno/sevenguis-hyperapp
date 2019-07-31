@@ -41,7 +41,6 @@ export function set(DS, name, string) {
     name = name.toUpperCase()
 
     if (!Refs.valid(name)) return DS //just ignore a wierd set().
-    //set the plain value, and clear the calculation of foo
 
     DS = clear(
         {
@@ -57,11 +56,6 @@ export function set(DS, name, string) {
     )
     return getUncalculated(DS).reduce((DS, n) => calculate(DS, n, []), DS)
 }
-
-// clear the calculation of the given item
-// and recurse for each which depends on it
-// detect cyclical dependencies and set the
-// calculation as 'error' for all in the cycle
 
 function clear(DS, name) {
     DS = {
@@ -105,7 +99,7 @@ function calculate(DS, name, stack) {
         deps = []
     if (!value) {
         type = 'empty'
-        calc = EMPTY_VALUE //false is what we use for "empty" values
+        calc = EMPTY_VALUE
     } else if (!isNaN(value)) {
         type = 'number'
         calc = +value
