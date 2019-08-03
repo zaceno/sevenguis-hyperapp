@@ -1,6 +1,6 @@
 import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { targetValue } from 'https://unpkg.com/@hyperapp/events'
 import * as Collection from '../lib/data/collection/index.js'
-import targetValue from '../lib/payload/targetvalue.js'
 import demoList from './demo-people.js'
 
 const enteredPerson = state => ({

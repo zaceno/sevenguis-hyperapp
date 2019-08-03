@@ -1,8 +1,8 @@
 import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { eventOptions, targetValue } from 'https://unpkg.com/@hyperapp/events'
 import * as Table from './table/index.js'
 import demoTable from './demo-table.js'
 import Focus from '../lib/fx/focus.js'
-import PreventDefault from '../lib/fx/preventdefault.js'
 
 const edit = (state, cell) => ({
     ...state,
@@ -31,7 +31,11 @@ const HandleKey = (state, event) => {
     const editing = Table.offset(state.editing, ...offs)
     return editing === state.editing
         ? state
-        : [edit(state, editing), PreventDefault(event), Focus('cellinput')]
+        : [
+              edit(state, editing),
+              eventOptions({ event, preventDefault: true }),
+              Focus('cellinput'),
+          ]
 }
 
 const CellInput = state =>
@@ -39,7 +43,7 @@ const CellInput = state =>
         id: 'cellinput',
         type: 'text',
         value: state.entry,
-        oninput: [Enter, e => e.target.value],
+        oninput: [Enter, targetValue],
         onkeydown: HandleKey,
     })
 

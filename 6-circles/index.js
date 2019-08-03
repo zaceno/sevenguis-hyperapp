@@ -1,4 +1,5 @@
 import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { targetValue } from 'https://unpkg.com/@hyperapp/events'
 import GetRect from '../lib/fx/rect.js'
 import * as Circles from './circles/index.js'
 
@@ -121,7 +122,7 @@ app({
                         h('input', {
                             type: 'range',
                             value: state.diameter,
-                            oninput: [SetDiameter, ev => ev.target.value],
+                            oninput: [SetDiameter, targetValue],
                             max: MAX_DIAMETER,
                             min: MIN_DIAMETER,
                         }),

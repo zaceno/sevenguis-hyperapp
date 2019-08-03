@@ -1,5 +1,5 @@
 import { h, app } from 'https://unpkg.com/hyperapp@beta'
-import targetValue from '../lib/payload/targetvalue.js'
+import { targetValue } from 'https://unpkg.com/@hyperapp/events'
 
 const SetCelsius = (_, c) => ({ c, f: null })
 const SetFarenheit = (_, f) => ({ f, c: null })

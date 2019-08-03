@@ -1,7 +1,9 @@
 import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import {
+    onAnimationFrame,
+    targetValue,
+} from 'https://unpkg.com/@hyperapp/events'
 import Timestamp from '../lib/fx/timestamp.js'
-import AnimationFrame from '../lib/sub/animationframe.js'
-import targetValue from '../lib/payload/targetvalue.js'
 
 const GAUGE_WIDTH = 300
 const DEFAULT_DURATION = 5
@@ -24,12 +26,15 @@ const DoReset = (state, now) => ({
     now: now,
     started: now,
 })
-const SetNow = (state, now) => ({ ...state, now })
+const SetNow = (state, now) => {
+    //    console.log(isRunning(state))
+    return { ...state, now }
+}
 
 app({
     node: document.getElementById('app-timer'),
-    init: _ => [{ duration: DEFAULT_DURATION }, Timestamp(DoReset)],
-    subscriptions: state => [isRunning(state) && AnimationFrame(SetNow)],
+    init: [{ duration: DEFAULT_DURATION }, Timestamp(DoReset)],
+    subscriptions: state => [isRunning(state) && onAnimationFrame(SetNow)],
     view: state =>
         h('div', { id: 'app-timer' }, [
             h('p', {}, ['Remaining time: ', getRemainingSeconds(state), 's ']),
