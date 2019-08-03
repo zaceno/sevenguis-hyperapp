@@ -308,3 +308,9 @@ test('Formula with bad range', t => {
     x = set(x, 'A1', '=foo:bar')
     t.is(evaluate(x, 'A1'), '#ERROR#')
 })
+
+test('Reference empty cell', t => {
+    let x = init()
+    x = set(x, 'A1', '=B1')
+    t.is(evaluate(x, 'A1'), '')
+})

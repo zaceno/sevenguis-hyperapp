@@ -33,7 +33,10 @@ export function evaluate(DS, name) {
     const cell = DS[name]
     if (cell.type === 'error') return ERROR_STRING
     if (cell.type === 'empty') return EMPTY_STRING
-    if (cell.type === 'number') return '' + cell.calc
+    if (cell.type === 'number') {
+        if (cell.calc === EMPTY_VALUE) return EMPTY_STRING
+        return '' + cell.calc
+    }
     if (cell.type === 'string') return cell.value
 }
 
