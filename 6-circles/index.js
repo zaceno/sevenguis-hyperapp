@@ -1,4 +1,4 @@
-import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { h, app } from 'https://unpkg.com/hyperapp'
 import { targetValue } from 'https://unpkg.com/@hyperapp/events'
 import GetRect from '../lib/fx/rect.js'
 import * as Circles from './circles/index.js'

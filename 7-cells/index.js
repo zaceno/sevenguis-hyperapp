@@ -1,4 +1,4 @@
-import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { h, app } from 'https://unpkg.com/hyperapp'
 import { eventOptions, targetValue } from 'https://unpkg.com/@hyperapp/events'
 import * as Table from './table/index.js'
 import demoTable from './demo-table.js'

@@ -1,4 +1,4 @@
-import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { h, app } from 'https://unpkg.com/hyperapp'
 
 app({
     node: document.getElementById('app-counter'),

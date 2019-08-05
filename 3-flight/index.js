@@ -1,4 +1,4 @@
-import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { h, app } from 'https://unpkg.com/hyperapp'
 import { targetValue } from 'https://unpkg.com/@hyperapp/events'
 import Alert from '../lib/fx/alert.js'
 import Now from '../lib/fx/now.js'

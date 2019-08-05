@@ -1,4 +1,4 @@
-import { h, app } from 'https://unpkg.com/hyperapp@beta'
+import { h, app } from 'https://unpkg.com/hyperapp'
 import { targetValue } from 'https://unpkg.com/@hyperapp/events'
 import * as Collection from '../lib/data/collection/index.js'
 import demoList from './demo-people.js'
