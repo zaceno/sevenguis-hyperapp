@@ -15,7 +15,7 @@ const parseDate = str => {
 const formatDate = time => {
     const D = new Date(time)
     let d = D.getDate()
-    d = (d < 9 ? '0' : '') + d
+    d = (d <= 9 ? '0' : '') + d
     let m = D.getMonth() + 1
     m = (m < 9 ? '0' : '') + m
     return `${d}.${m}.${D.getFullYear()}`
