@@ -17,7 +17,7 @@ const formatDate = time => {
     let d = D.getDate()
     d = (d <= 9 ? '0' : '') + d
     let m = D.getMonth() + 1
-    m = (m < 9 ? '0' : '') + m
+    m = (m <= 9 ? '0' : '') + m
     return `${d}.${m}.${D.getFullYear()}`
 }
 
