@@ -1,0 +1,28 @@
+<h1>Cells: Dynamic & interdependent data</h1>
+
+<p>
+    This app is a sort of basic spreadsheet application, intended 
+    to demonstrate a more complex, real-world use case. 
+</p>
+
+<p>    
+    Each cell can hold 
+    a value or it can have a value that depends on other cells via a formula, 
+    for example <code>=SUM(C1:C5)</code>.  There could be cells dependent on cells 
+    in multiple layers. One of the constraints on the task, is that cells should not be calculated 
+    unless one of their dependencies has changed. This would make reactive state 
+    management tools like RX.js streams or Knockout's observables especially suitable. 
+</p>
+
+<p>
+    Unfortunately those tools are based on having mutable instances of data, which 
+    doesn't work well with immutable state management such Hyperapp uses (similar to Redux). 
+    For this reason I implemented <code>reactive-store.js</code> – a library of immutable 
+    state management helpers that allow you to implement a structure similar to those reactive 
+    libraries. Each time a value is set in the store, any dependent values are recalculated. 
+</p>
+
+<p>
+    The cells-store is based on this reactive store. I wired it together with 
+    an editable-table-component similar to how the modal was wired in the circles example. 
+</p>

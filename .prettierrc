@@ -7,5 +7,7 @@
     "trailingComma": "es5",
     "bracketSpacing": true,
     "jsxBracketSameLine": false,
-    "fluid": false
-  }
+    "fluid": false,
+    "htmlWhitespaceSensitivity": "css",
+    "embeddedLanguageFormatting": "off"
+}

@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+/* --- SETUP ---- */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* --- MAIN LAYOUT --- */
+
+body > nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 159px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 20px;
+    background-color: hsl(223deg, 7%, 49%);
+    border-right: 1px #1e1e1e solid;
+}
+
+body > main {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    bottom: 0;
+    right: 500px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    padding: 20px 50px;
+    background: rgba(117, 73, 135, 1);
+}
+
+body > main > main {
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body > section#code {
+    position: absolute;
+    background-color: #1e1e1e; /* match to highlighter theme */
+    top: 0;
+    width: 500px;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+    box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ---- TYPOGRAPHY ---- */
+
+body {
+    font-family: 'Open sans', sans-serif;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.5em;
+}
+
+h1 {
+    font-family: 'Dancing script';
+    font-size: 48px;
+    line-height: 0.8em;
+    margin: 0.8em 0;
+}
+
+p {
+    margin: 1em 0;
+}
+
+body > nav {
+    color: #000;
+}
+
+body > section#code {
+    font-family: monospace;
+    font-size: 13px;
+}
+
+body > main > main {
+    color: #000;
+}
+
+body > main > section#info > h1 {
+    text-shadow: 0 -1px 2px #000;
+}
+
+/* ----- NAVIGATION MENU ----- */
+
+body > nav ul {
+    list-style-type: none;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+body > nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+body > nav a.current {
+    color: #fff;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.4);
+}
+
+body > nav li a:before {
+    content: '\2606\00a0\00a0';
+}
+
+body > nav li a.current:before {
+    content: '\2605\00a0\00a0';
+}
+
+body > nav a#logo {
+    display: block;
+    background-image: url('data:image/svg+xml;base64,PHN2ZwogICAgICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICB3aWR0aD0iMTc1IgogICAgICAgIGhlaWdodD0iMTc1IgogICAgICAgIHZpZXdCb3g9Ijk1LCA1LCAyNjcsIDI2NyIKICAgID4KICAgICAgICA8ZyBmaWxsPSIjZmZmZmZmIiB0cmFuc2Zvcm09InNjYWxlKDAuNzcsIDAuNzcpIj4KICAgICAgICAgICAgPHBhdGgKICAgICAgICAgICAgICAgIGQ9Ik0yNDcuNjU3LDMwOS41MzEgTDIzOC40NzQsMjUzLjcxOCBMMTkyLjUxNCwyODYuNjkgTDIwNS4zODksMjMxLjYxMSBMMTUwLjMxLDI0NC40ODYgTDE4My4yODIsMTk4LjUyNiBMMTI3LjQ2OSwxODkuMzQzIEwxNzUuNTIsMTU5LjUgTDEyNy40NjksMTI5LjY1NyBMMTgzLjI4MiwxMjAuNDc0IEwxNTAuMzEsNzQuNTE0IEwyMDUuMzg5LDg3LjM4OSBMMTkyLjUxNCwzMi4zMSBMMjM4LjQ3NCw2NS4yODIgTDI0Ny42NTcsOS40NjkgTDI3Ny41LDU3LjUyIEwzMDcuMzQzLDkuNDY5IEwzMTYuNTI2LDY1LjI4MiBMMzYyLjQ4NiwzMi4zMSBMMzQ5LjYxMSw4Ny4zODkgTDQwNC42OSw3NC41MTQgTDM3MS43MTgsMTIwLjQ3NCBMNDI3LjUzMSwxMjkuNjU3IEwzNzkuNDgsMTU5LjUgTDQyNy41MzEsMTg5LjM0MyBMMzcxLjcxOCwxOTguNTI2IEw0MDQuNjksMjQ0LjQ4NiBMMzQ5LjYxMSwyMzEuNjExIEwzNjIuNDg2LDI4Ni42OSBMMzE2LjUyNiwyNTMuNzE4IEwzMDcuMzQzLDMwOS41MzEgTDI3Ny41LDI2MS40OCB6IgogICAgICAgICAgICAgICAgc3Ryb2tlPSIjMDAwMDAwIgogICAgICAgICAgICAgICAgc3Ryb2tlLXdpZHRoPSIxIgogICAgICAgICAgICAvPgogICAgICAgIDwvZz4KICAgIDwvc3ZnPg==');
+    background-repeat: no-repeat;
+    height: 155px;
+    text-align: center;
+    transform: rotate(-20deg);
+    margin-top: -20px;
+}
+
+body > nav a#logo h1 {
+    font-size: 22px;
+    padding-top: 60px;
+}
+
+body > nav a#logo h1 span:last-child {
+    font-family: 'Bungee';
+    font-size: 12px;
+}
+
+body > nav a#githublink {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    left: calc(50% - 20px);
+    text-align: center;
+    background-image: url('./Github-Mark-32px.png');
+    background-repeat: no-repeat;
+    background-position: center 0px;
+}
+body > nav a#githublink img {
+    margin-top: 1px;
+}
+/* --------------  MAIN INFO SECTION -------------- */
+
+h1#mainTitle {
+    text-align: center;
+}
+
+h1#mainTitle span:last-child {
+    font-family: 'Bungee';
+    font-size: 25px;
+}
+
+/* ------------- BUILT IN WIDGET STYLING ----------- */
+
+button {
+    box-shadow: inset 0px 1px 0px 0px #54a3f7;
+    background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    background-color: #007dc1;
+    border-radius: 3px;
+    border: 1px solid #124d77;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 6px 12px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #154682;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+    background-color: #0061a7;
+}
+
+button:enabled:active {
+    position: relative;
+    top: 1px;
+}
+
+button:disabled {
+    background: #808080;
+    color: #ccc;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+    border-radius: 3px;
+    border: 1px solid #124d77;
+    font-size: 15px;
+    padding: 6px 12px;
+}
+
+input[type='text'].error,
+input[type='password'].error,
+input[type='email'].error {
+    border-color: #c00;
+    color: #c00;
+}
+
+input[type='text']:disabled,
+input[type='password']:disabled,
+input[type='email']:disabled {
+    border-color: #ddd;
+    color: #ddd;
+}
+
+select {
+    display: inline-block;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+        linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+    border-radius: 3px;
+    border: 1px solid #124d77;
+    font-size: 15px;
+    padding: 6px 12px;
+    padding-right: 24px;
+}
+select.error {
+    border-color: #c00;
+    color: #c00;
+}
+
+input[type='range'] {
+    position: relative;
+    top: 5px;
+}
+label > span + input {
+    margin-left: 8px;
+}
+label > input + span {
+    margin-left: 8px;
+}
+
+button + button {
+    margin-left: 8px;
+}
+/* ------------- LOADING SPINNER ----------------- */
+
+#spinner-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+#spinner {
+    display: block;
+    position: absolute;
+    left: calc(50% - 40px);
+    top: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+}
+#spinner:after {
+    content: ' ';
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #ddd;
+    border-color: #ddd transparent #ddd transparent;
+    animation: spinner 1.2s linear infinite;
+}
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,16 @@
+<h1>Dynamic Timer</h1>
+
+<p>
+    The reason for including this task in the 7GUIs is to demonstrate 
+    how concurrent processes can interact with the UI. In javascript there 
+    is of course no concurrency per se. The nearest equivalent is the concept 
+    of "asynchronous event streams".  
+</p>
+
+<p>
+    In Hyperapp, the way to interact with asynchronous event streams is to 
+    use a subscription. In this case we use the <code>every</code> subscription 
+    to dispatch an action every x milliseconds. That is how we keep track of the 
+    remaining time in the timer. The subscription is switched on and 
+    off depending on if the timer should be running or not. 
+</p>

@@ -1,0 +1,28 @@
+<h1>Circle Drawer</h1>
+
+<p>
+    This task demonstrates how to draw custom graphics and interact 
+    with them. As we are on the web, SVG is the natural solution.  
+</p>
+
+<p> 
+    This example is also intended to demonstrate how to manage an 
+    undo-history for the app. Hyperapp's architecture with a single,   
+    global state makes this quite easy. I wrapped the <code>collection-store.js</code> 
+    state helpers in histor helpers to create <code>history-collection-store.js</code>  
+</p>
+
+<p> 
+    Another thing demonstrated here is how to present a modal dialog. The modal needs 
+    to keep track of some local state (if it is being dragged, for example), so it simultaneously an example 
+    of integrating a component which requires some local state, by "wiring". 
+    (Read more about this technique in my 
+    <a href="https://dev.to/zaceno/modular-hyperapp-part-1-7f6">series about modular hyperapp</a>) 
+</p>
+
+<p>
+    One final thing to note. I use the <code>onResize</code> subscription to detect layout 
+    changes, in order to adjust the <code>viewBox</code> of the <code>svg</code> element, so 
+    that it fills the available width. The <code>getRect</code> effect calls back an action 
+    with the rect of the element at the given selector. 
+</p>
