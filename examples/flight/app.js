@@ -1,4 +1,4 @@
-import { app } from '../../lib/hyperapp.js'
+import { app } from 'https://unpkg.com/hyperapp'
 import html from 'https://unpkg.com/hyperlit'
 import alerter from '../../lib/io/alert.js'
 

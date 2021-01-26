@@ -1,4 +1,4 @@
-import { app } from '../../lib/hyperapp.js'
+import { app } from 'https://unpkg.com/hyperapp'
 import html from 'https://unpkg.com/hyperlit'
 import { every } from 'https://unpkg.com/@hyperapp/time'
 import progressBar from '../../lib/components/progress-bar.js'
