@@ -1,6 +1,6 @@
 import { app } from 'https://unpkg.com/hyperapp'
 import html from 'https://unpkg.com/hyperlit'
-import { every } from 'https://unpkg.com/@hyperapp/time'
+import { every } from '../../lib/io/time.js'
 import progressBar from '../../lib/components/progress-bar.js'
 
 const MAX_DURATION = 15000

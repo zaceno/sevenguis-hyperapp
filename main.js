@@ -1,9 +1,10 @@
 import { app } from 'https://unpkg.com/hyperapp'
 import html from 'https://unpkg.com/hyperlit'
-import { request as http } from 'https://unpkg.com/@hyperapp/http'
 import * as router from './lib/io/router.js'
+import {getText} from './lib/io/http.js'
 import makeRunnerInstance from './lib/io/runner.js'
 import higlighter from './lib/io/syntax-higlighter.js'
+
 
 const examples = {
     '#counter': 'Counter',
@@ -62,8 +63,8 @@ const SetRoute = (state, route) => {
             loading: path,
         },
         runner(path + 'app.js'),
-        http({ url: path + 'info.html', expect: 'text', action: GotInfo }),
-        http({ url: path + 'app.js', expect: 'text', action: GotCode }),
+        getText(path + 'info.html', GotInfo),
+        getText(path + 'app.js', GotCode ),
     ]
 }
 
